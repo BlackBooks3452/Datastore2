@@ -1,0 +1,17 @@
+local Datastore2 = require(1936396537) --Datastore ID
+Datastore2.Combine("Data","x") --Combine beberapa datastore jadi 1 kesatuan
+
+game.Players.PlayerAdded:Connect(function(plr)
+    local xDS = Datastore2("x", plr) --Datastore x
+    
+    local xVal = Instance.new("IntValue", plr) --IntValue di plr
+    xVal.Name = "X"
+    
+    local function xUPD(val) --Function untuk set IntValuenya
+        xVal.Value = xDS:Get(val) --Datastore2:Get(defaultVal)
+	end
+    
+    xUPD(10) --Set default data
+    
+    xDS:OnUpdate(xUPD)
+end)
